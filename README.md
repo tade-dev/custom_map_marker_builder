@@ -15,9 +15,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  custom_marker_builder:
-    git:
-      url: https://github.com/tade-dev/custom_map_marker_builder.git
+  custom_marker_builder: 1.0.0
 ```
 
 ## Usage
