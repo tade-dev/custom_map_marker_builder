@@ -1,4 +1,4 @@
-import 'package:custom_marker_builder/s/marker_builder.dart';
+import 'package:custom_marker_builder/custom_map_marker_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -24,7 +24,7 @@ class MapSample extends StatefulWidget {
 }
 
 class _MapSampleState extends State<MapSample> {
-  late GoogleMapController _controller;
+  late GoogleMapController controller;
   Set<Marker> _markers = {};
 
   @override
@@ -71,7 +71,7 @@ class _MapSampleState extends State<MapSample> {
           zoom: 15,
         ),
         markers: _markers,
-        onMapCreated: (controller) => _controller = controller,
+        onMapCreated: (con) => con = controller,
       ),
     );
   }

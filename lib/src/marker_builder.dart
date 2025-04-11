@@ -36,6 +36,6 @@ class CustomMapMarkerBuilder {
 
     overlay.remove();
 
-    return BitmapDescriptor.fromBytes(pngBytes);
+    return BitmapDescriptor.bytes(pngBytes);
   }
 }
