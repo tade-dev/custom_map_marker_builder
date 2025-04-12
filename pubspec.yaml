@@ -1,6 +1,6 @@
 name: custom_marker_builder
 description: A Flutter package to create dynamic custom markers for Google Maps using Flutter widgets.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/tade-dev/custom_map_marker_builder
 environment:
   sdk: '^3.6.0'

@@ -1,4 +1,4 @@
-## [0.0.1] - 2025-04-12
+## [0.0.2] - 2025-04-12
 ### Added
 - Initial release of `custom_marker_builder`.
 - Supports generating Google Maps markers from Flutter widgets using `RepaintBoundary`.
