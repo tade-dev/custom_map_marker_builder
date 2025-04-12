@@ -15,7 +15,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  custom_marker_builder: 1.0.0
+  custom_marker_builder: 0.0.1
 ```
 
 ## Usage
