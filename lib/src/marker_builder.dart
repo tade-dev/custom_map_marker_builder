@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+/// A utility class to create custom map markers using Flutter widgets.
 class CustomMapMarkerBuilder {
   static Future<BitmapDescriptor> fromWidget({
     required BuildContext context,
