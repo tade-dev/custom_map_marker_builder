@@ -18,6 +18,12 @@ dependencies:
   custom_marker_builder: 0.0.3
 ```
 
+## 🎥 Demo
+
+Here's how `custom_marker_builder` works in a real app:
+
+![Demo](https://raw.githubusercontent.com/tade-dev/custom_map_marker_builder/main/assets/video.gif)
+
 ## Usage
 
 ### 1. Import the package
