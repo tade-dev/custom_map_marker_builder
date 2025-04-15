@@ -4,8 +4,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-/// A utility class to create custom map markers using Flutter widgets.
+/// A utility class for generating custom map markers from Flutter widgets.
+///
+/// This class provides a method to convert any Flutter widget into a
+/// `BitmapDescriptor` that can be used as a custom marker icon in
+/// `google_maps_flutter`.
+///
+/// Example usage:
+/// ```dart
+/// final markerIcon = await CustomMapMarkerBuilder.fromWidget(
+///   context: context,
+///   marker: MyCustomMarkerWidget(),
+/// );
+/// ```
 class CustomMapMarkerBuilder {
+  /// Converts a Flutter widget into a [BitmapDescriptor] that can be used
+  /// as a custom marker in Google Maps.
+  ///
+  /// The widget is rendered off-screen using a [RepaintBoundary] and captured
+  /// as a PNG image. The resulting bytes are used to create a [BitmapDescriptor].
+  ///
+  /// [context] is required to access the overlay for off-screen rendering.
+  ///
+  /// [marker] is the widget to be rendered into the marker.
+  ///
+  /// [pixelRatio] controls the resolution of the rendered marker image.
+  /// Defaults to `3.0`.
+  ///
+  /// Returns a [Future] that completes with the [BitmapDescriptor] generated
+  /// from the widget.
   static Future<BitmapDescriptor> fromWidget({
     required BuildContext context,
     required Widget marker,
@@ -38,6 +65,6 @@ class CustomMapMarkerBuilder {
 
     overlay.remove();
 
-    return BitmapDescriptor.bytes(pngBytes);
+    return BitmapDescriptor.fromBytes(pngBytes);
   }
 }

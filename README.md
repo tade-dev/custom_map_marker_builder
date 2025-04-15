@@ -15,7 +15,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  custom_marker_builder: 0.0.2
+  custom_marker_builder: 0.0.3
 ```
 
 ## Usage
@@ -55,16 +55,11 @@ class CustomMarkerWidget extends StatelessWidget {
 ### 3. Convert the widget to a marker icon
 
 ```dart
-final markerKey = GlobalKey();
-
-// Capture the widget
-RepaintBoundary(
-  key: markerKey,
-  child: CustomMarkerWidget(),
-);
-
 // Convert to BitmapDescriptor
-final markerIcon = await CustomMarkerBuilder.fromWidget(markerKey);
+final markerIcon = await CustomMarkerBuilder.fromWidget(
+  context: context,
+  marker: CustomMarkerWidget()
+);
 
 // Create marker
 final marker = Marker(
