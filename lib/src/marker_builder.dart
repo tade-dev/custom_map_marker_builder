@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
@@ -48,15 +49,28 @@ class CustomMapMarkerBuilder {
     final overlay = OverlayEntry(
       builder: (context) => Material(
         type: MaterialType.transparency,
-        child: Center(child: markerWidget),
+        child: Stack(
+          children: [
+            Positioned(
+              left: -1000,
+              top: -1000,
+              child: markerWidget,
+            ),
+          ],
+        ),
       ),
     );
 
-    final overlayState = Overlay.of(context);
+    final overlayState = Overlay.of(context, rootOverlay: true);
     overlayState.insert(overlay);
 
-    await Future.delayed(const Duration(milliseconds: 100));
+    final completer = Completer<void>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      completer.complete();
+    });
+    await completer.future;
 
+    // 🔍 Get image from RepaintBoundary
     RenderRepaintBoundary boundary =
         key.currentContext!.findRenderObject() as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage(pixelRatio: pixelRatio);
