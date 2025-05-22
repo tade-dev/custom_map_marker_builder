@@ -1,3 +1,14 @@
+## [0.0.4] - 2025-05-21
+### Fixed
+- Eliminated initial marker flicker by replacing `Future.delayed` with `addPostFrameCallback`, ensuring accurate rendering timing without layout artifacts.
+
+### Improved
+- More stable off-screen widget rendering for marker generation.
+- Cleaner internal marker capture logic to avoid frame timing issues on app startup.
+
+### Thanks
+- Special thanks to @TyBarthel for reporting the flicker issue and suggesting the fix.
+
 ## [0.0.3+1] - 2025-04-15
 ### Fixed
 - Resolved issue where custom markers appeared visually detached from map coordinates by correctly setting the `anchor` to `Offset(0.5, 1.0)`.

@@ -34,7 +34,6 @@ class _MapSampleState extends State<MapSample> {
   }
 
   Future<void> _loadMarker() async {
-    /// Creates a marker from a widget.
     final bitmap = await CustomMapMarkerBuilder.fromWidget(
       context: context,
       marker: Container(

@@ -15,7 +15,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  custom_marker_builder: 0.0.3
+  custom_marker_builder: 0.0.4
 ```
 
 ## 🎥 Demo
@@ -62,7 +62,7 @@ class CustomMarkerWidget extends StatelessWidget {
 
 ```dart
 // Convert to BitmapDescriptor
-final markerIcon = await CustomMarkerBuilder.fromWidget(
+final markerIcon = await CustomMapMarkerBuilder.fromWidget(
   context: context,
   marker: CustomMarkerWidget()
 );
