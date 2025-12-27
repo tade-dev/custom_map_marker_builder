@@ -1,0 +1,12 @@
+# Pub ignore file
+# Exclude platform-specific files from the package that aren't needed for library users
+example/build/
+example/.dart_tool/
+example/.flutter-plugins
+example/.flutter-plugins-dependencies
+example/*.iml
+.idea/
+.vscode/
+build/
+.dart_tool/
+*.iml
