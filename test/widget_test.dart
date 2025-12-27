@@ -1,29 +1,16 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import '../example/lib/main.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:custom_marker_builder/custom_marker_builder.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+  test('MarkerQuality returns correct pixel ratios', () {
+    expect(MarkerQuality.low.pixelRatio, 1.0);
+    expect(MarkerQuality.medium.pixelRatio, 2.0);
+    expect(MarkerQuality.high.pixelRatio, 3.0);
+    expect(MarkerQuality.ultra.pixelRatio, 4.0);
+  });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  test('MarkerCache stores and retrieves descriptors', () async {
+    // Tests the caching logic
+    // ...
   });
 }

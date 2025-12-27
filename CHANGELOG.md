@@ -1,3 +1,20 @@
+## [1.0.0] - 2025-12-22
+### Added
+- **Intelligent Caching System**: `MarkerCache` with TTL, memory-aware cleanup, and performance statistics.
+- **Batch Generation**: `fromWidgetBatch` and `fromWidgetMap` and parallel processing for creating multiple markers efficiently.
+- **SVG Support**: Native SVG rendering using `flutter_svg`.
+- **Network & Asset Helpers**: Simplified methods for loading images from network and assets.
+- **Animation Support**: `AnimatedMarkerBuilder` for creating animated markers from widgets.
+- **Clustering**: `MarkerClusterBuilder` for creating high-performance cluster icons.
+- **Error Handling**: Comprehensive exception system with timeouts and fallback mechanisms.
+- **Quality Presets**: `MarkerQuality` enum for easy resolution control.
+- **Platform Optimizations**: Automated adjustments for Web and Native platforms.
+
+### Improved
+- Robust off-screen rendering with better frame synchronization.
+- Thread-safe overlay management for parallel batch processing.
+- Comprehensive documentation and expanded example app.
+
 ## [0.0.4] - 2025-05-21
 ### Fixed
 - Eliminated initial marker flicker by replacing `Future.delayed` with `addPostFrameCallback`, ensuring accurate rendering timing without layout artifacts.
