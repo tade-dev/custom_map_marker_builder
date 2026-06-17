@@ -1,91 +1,113 @@
 # Custom Map Marker Builder
 
-A Flutter package for creating dynamic custom map markers using standard Flutter widgets. Convert any widget into a Google Maps marker with pixel-perfect rendering.
+A high-performance Flutter package for creating dynamic Google Maps markers from standard Flutter widgets. Convert any widget into a marker with advanced caching, batching, and animation support.
 
-## Features
+## 🚀 Features Comparison
 
-- Create custom markers from any Flutter widget (text, images, icons)
-- Widget-based marker design for complete customization
-- High-quality rendering using `RepaintBoundary`
-- Seamless integration with `google_maps_flutter`
+| Feature | 0.0.4 | 1.0.0 |
+|---------|-------|-------|
+| Widget to Marker | ✅ | ✅ |
+| Intelligent Caching | ❌ | ✅ |
+| Batch Generation | ❌ | ✅ |
+| Network Images | ❌ | ✅ |
+| SVG Support | ❌ | ✅ |
+| Marker Clustering | ❌ | ✅ |
+| Animated Markers | ❌ | ✅ |
+| Render Timeouts | ❌ | ✅ |
+| Quality Presets | ❌ | ✅ |
 
-## Installation
+## 📸 Showcase
+
+![Showcase](assets/showcase.png)
+
+## 📦 Installation
 
 Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  custom_marker_builder: 0.0.3
+  custom_marker_builder: ^1.0.0
 ```
 
-## 🎥 Demo
+## 🛠 Usage
 
-Here's how `custom_marker_builder` works in a real app:
-
-![Demo](https://raw.githubusercontent.com/tade-dev/custom_map_marker_builder/main/assets/video.gif)
-
-## Usage
-
-### 1. Import the package
+### ⚙️ Global Configuration
 
 ```dart
-import 'package:custom_marker_builder/custom_marker_builder.dart';
+MarkerBuilderConfig.setGlobal(MarkerBuilderConfig(
+  defaultQuality: MarkerQuality.high,
+  defaultCacheDuration: Duration(hours: 2),
+  maxCacheSize: 150,
+));
 ```
 
-### 2. Create a widget for your marker
+### 1. Simple Widget Marker
 
 ```dart
-class CustomMarkerWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [BoxShadow(blurRadius: 4, color: Colors.black26)],
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.local_gas_station, color: Colors.green, size: 30),
-          SizedBox(width: 4),
-          Text("₦640", style: TextStyle(fontWeight: FontWeight.bold)),
-        ],
-      ),
-    );
-  }
-}
-```
-
-### 3. Convert the widget to a marker icon
-
-```dart
-// Convert to BitmapDescriptor
-final markerIcon = await CustomMarkerBuilder.fromWidget(
+final markerIcon = await CustomMapMarkerBuilder.fromWidget(
   context: context,
-  marker: CustomMarkerWidget()
-);
-
-// Create marker
-final marker = Marker(
-  markerId: MarkerId('myMarker'),
-  position: LatLng(6.5244, 3.3792),
-  icon: markerIcon,
+  marker: MyCustomWidget(),
+  cacheKey: "unique_id_123",
 );
 ```
 
-### 4. Add to Google Maps
+### 2. Batch Processing
 
 ```dart
-GoogleMap(
-  initialCameraPosition: CameraPosition(
-    target: LatLng(6.5244, 3.3792),
-    zoom: 12,
-  ),
-  markers: {marker},
-)
+final markers = await BatchMarkerBuilder.fromWidgetBatch(
+  context: context,
+  markers: [Widget1(), Widget2(), Widget3()],
+  onProgress: (completed, total) => print("$completed/$total done"),
+);
 ```
+
+### 3. SVG Support
+
+```dart
+final markerIcon = await CustomMapMarkerBuilder.fromSvg(
+  context: context,
+  svgString: svgString,
+  size: Size(40, 40),
+);
+```
+
+### 4. Network Images
+
+```dart
+final markerIcon = await CustomMapMarkerBuilder.fromNetworkImage(
+  context: context,
+  imageUrl: "https://example.com/marker.png",
+  loadingWidget: CircularProgressIndicator(),
+);
+```
+
+### 5. Animated Markers
+
+```dart
+AnimatedMarkerBuilder.fromAnimatedWidget(
+  context: context,
+  builder: (value) => MyAnimatedWidget(value: value),
+  duration: Duration(seconds: 1),
+).listen((bitmapDescriptor) {
+  // Update your marker icon in the map
+});
+```
+
+## 📊 Caching System
+
+Built-in caching prevents redundant rendering. You can monitor performance via `MarkerCache.stats`.
+
+```dart
+final stats = MarkerCache.stats;
+print("Cache hits: ${stats['hits']}, size: ${stats['size']}");
+```
+
+## ⚠️ Migration Guide (0.0.4 to 1.0.0)
+
+- `CustomMapMarkerBuilder.fromWidget` now has optional parameters for caching and quality.
+- `pixelRatio` is now part of `MarkerQuality` but can still be overridden with `customPixelRatio`.
+- All methods now support `renderTimeout`.
+- Recommended: Provide a `cacheKey` to take advantage of the new caching system.
 
 ## Example
 
